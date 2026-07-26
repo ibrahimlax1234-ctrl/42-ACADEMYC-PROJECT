@@ -1,0 +1,50 @@
+
+
+
+NAME	=	robot_ex01
+
+
+
+SRC		=	ClapTrap.cpp \
+			ScavTrap.cpp \
+			main.cpp
+
+
+OBJ		=	ClapTrap.o \
+			ScavTrap.o \
+			main.o
+
+
+CC		=	c++
+
+
+FLAGS	=	-Wall -Werror -Wextra -std=c++98
+
+
+
+
+
+
+all: $(NAME)
+
+
+
+
+
+$(NAME): $(OBJ)
+	c++ $(OBJ) -o $(NAME)
+
+
+%.o : %.cpp ClapTrap.hpp ScavTrap.hpp
+	$(CC) $(FLAGS) -c $< -o $@
+
+
+clean:
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
